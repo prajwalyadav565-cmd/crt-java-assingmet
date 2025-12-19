@@ -1,0 +1,40 @@
+class Printer implements Runnable
+{
+    public void run()
+    {
+        String name = Thread.currentThread().getName();
+        System.out.println(name + " Printing started");
+        for(int i = 0;i<=5;i++)
+        {
+            System.out.println(name + "is printing");
+            try
+            {
+                Thread.sleep(2000);
+            }
+            catch(Exception e)
+            {
+                System.out.println("Some problem occured");
+            }
+        }
+        System.out.println(name + " Completed the printing");
+    }
+}
+
+public class DisadvantagesOfMultiThreading 
+{
+    public static void main(String a[])
+    {
+        Printer p = new Printer();
+        Thread t1 = new Thread(p);
+        Thread t2 = new Thread(p);
+        Thread t3 = new Thread(p);
+
+        t1.setName("Tharun");
+        t2.setName("Tarak");
+        t3.setName("Thaneesh");
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
